@@ -1,0 +1,29 @@
+project Tree_Navigator is
+   for Languages use ("Ada");
+   for Source_Dirs use ("src");
+   for Object_Dir use "obj";
+   for Exec_Dir use "bin";
+   for Main use ("main.adb");
+
+   package Compiler is
+      for Switches ("Ada") use (
+         "-gnat2022",        -- Use Ada 2022 standard
+         "-gnatwa",          -- All warnings
+         "-gnatwe",          -- Warnings as errors
+         "-gnaty",           -- Style checks
+         "-gnatQ",           -- Don't quit, generate ALI and tree files
+         "-O2",              -- Optimize
+         "-gnata",           -- Enable assertions
+         "-gnatVa"           -- All validity checks
+      );
+   end Compiler;
+
+   package Binder is
+      for Switches ("Ada") use ("-Es");  -- Store symbolic traceback
+   end Binder;
+
+   package Builder is
+      for Switches ("Ada") use ("-g");   -- Generate debug info
+   end Builder;
+
+end Tree_Navigator;
