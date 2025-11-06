@@ -1,6 +1,7 @@
 -- File type detection and classification
 pragma Ada_2022;
 with Ada.Directories;
+with Terminal;
 
 package File_Types is
 

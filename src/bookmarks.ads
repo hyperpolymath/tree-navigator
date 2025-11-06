@@ -1,13 +1,16 @@
 -- Bookmark management with persistence
 pragma Ada_2022;
+with Ada.Calendar;
 with Ada.Containers.Indefinite_Ordered_Maps;
 
 package Bookmarks is
 
+   type String_Access is access all String;
+
    -- Bookmark record
    type Bookmark is record
-      Name      : access String;
-      Path      : access String;
+      Name      : String_Access;
+      Path      : String_Access;
       Timestamp : Ada.Calendar.Time;
    end record;
 

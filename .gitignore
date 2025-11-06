@@ -1,0 +1,37 @@
+# Ada/GNAT compiled object files
+*.o
+*.ali
+*.so
+*.a
+
+# Build directories
+obj/
+bin/
+lib/
+
+# GNAT project files (keep the source, ignore generated)
+*.cgpr
+*.lexch
+*.bexch
+
+# Editor and IDE files
+*~
+*.swp
+*.swo
+.vscode/
+.idea/
+*.sublime-*
+
+# OS files
+.DS_Store
+Thumbs.db
+*.tmp
+
+# User data
+.cache/
+.config/tree-navigator/
+
+# Backup files
+*.bak
+*.backup
+*~

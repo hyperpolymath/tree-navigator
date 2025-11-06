@@ -3,22 +3,24 @@ pragma Ada_2022;
 
 package Config is
 
+   type String_Access is access all String;
+
    -- Configuration record
    type Configuration is record
-      Max_Depth        : Positive := 10;
-      Show_Hidden      : Boolean  := False;
-      Color_Mode       : Boolean  := True;
-      Cache_Enabled    : Boolean  := True;
-      Verbose          : Boolean  := False;
-      Safe_Mode        : Boolean  := True;
+      Max_Depth     : Positive := 10;
+      Show_Hidden   : Boolean  := False;
+      Color_Mode    : Boolean  := True;
+      Cache_Enabled : Boolean  := True;
+      Verbose       : Boolean  := False;
+      Safe_Mode     : Boolean  := True;
    end record;
 
    -- File paths
    type File_Paths is record
-      Config_Dir   : access String;
-      Cache_Dir    : access String;
-      Bookmark_File : access String;
-      History_File  : access String;
+      Config_Dir    : String_Access;
+      Cache_Dir     : String_Access;
+      Bookmark_File : String_Access;
+      History_File  : String_Access;
    end record;
 
    -- Load configuration from file

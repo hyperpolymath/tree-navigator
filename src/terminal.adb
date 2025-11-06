@@ -97,11 +97,13 @@ package body Terminal is
    end Clear_Screen;
 
    procedure Show_Header (Title : String; Width : Positive := 80) is
-      Border : constant String := (1 .. Width => '=');
-      Padding : constant Natural := (Width - Title'Length) / 2;
+      Border : constant String := [1 .. Width => '='];
+      Padding : constant Natural := Natural'Max (0, (Width - Title'Length) / 2);
    begin
       Put_Line_Colored (Border, Cyan);
-      Put_Colored ((1 .. Padding => ' '), Cyan);
+      if Padding > 0 then
+         Put_Colored ([1 .. Padding => ' '], Cyan);
+      end if;
       Put_Line_Colored (Title, Bold);
       Put_Line_Colored (Border, Cyan);
    end Show_Header;

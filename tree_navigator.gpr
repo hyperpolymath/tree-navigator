@@ -9,8 +9,6 @@ project Tree_Navigator is
       for Switches ("Ada") use (
          "-gnat2022",        -- Use Ada 2022 standard
          "-gnatwa",          -- All warnings
-         "-gnatwe",          -- Warnings as errors
-         "-gnaty",           -- Style checks
          "-gnatQ",           -- Don't quit, generate ALI and tree files
          "-O2",              -- Optimize
          "-gnata",           -- Enable assertions

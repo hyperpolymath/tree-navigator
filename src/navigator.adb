@@ -3,7 +3,7 @@ with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Directories; use Ada.Directories;
 with Ada.Environment_Variables;
 with Terminal;
-with File_Types;
+with File_Types; use File_Types;
 
 package body Navigator is
 
@@ -11,10 +11,10 @@ package body Navigator is
       Current : constant String := Current_Directory;
    begin
       return Navigation_State'(
-         Config          => Cfg,
-         Current_Path    => new String'(Current),
+         Cfg              => Cfg,
+         Current_Path     => To_Unbounded_String (Current),
          Navigation_Stack => String_Vectors.Empty_Vector,
-         Current_Depth   => 0
+         Current_Depth    => 0
       );
    end Initialize;
 
@@ -28,31 +28,31 @@ package body Navigator is
 
       -- Change directory
       Set_Directory (Path);
-      State.Current_Path := new String'(Path);
+      State.Current_Path := To_Unbounded_String (Path);
       State.Current_Depth := State.Current_Depth + 1;
 
-      Terminal.Debug ("Changed to: " & Path, State.Config.Verbose);
+      Terminal.Debug ("Changed to: " & Path, State.Cfg.Verbose);
    end Change_Directory;
 
    procedure Go_Up (State : in out Navigation_State) is
    begin
       if not State.Navigation_Stack.Is_Empty then
          declare
-            Previous : constant String := State.Navigation_Stack.Last_Element.all;
+            Previous : constant Unbounded_String := State.Navigation_Stack.Last_Element;
          begin
             State.Navigation_Stack.Delete_Last;
-            Set_Directory (Previous);
-            State.Current_Path := new String'(Previous);
+            Set_Directory (To_String (Previous));
+            State.Current_Path := Previous;
             State.Current_Depth := Natural'Max (0, State.Current_Depth - 1);
          end;
       else
          -- Just go up one level
          declare
-            Parent : constant String := Containing_Directory (State.Current_Path.all);
+            Parent : constant String := Containing_Directory (To_String (State.Current_Path));
          begin
-            if Parent /= State.Current_Path.all then
+            if Parent /= To_String (State.Current_Path) then
                Set_Directory (Parent);
-               State.Current_Path := new String'(Parent);
+               State.Current_Path := To_Unbounded_String (Parent);
                State.Current_Depth := Natural'Max (0, State.Current_Depth - 1);
             end if;
          end;
@@ -64,7 +64,7 @@ package body Navigator is
    begin
       State.Navigation_Stack.Clear;
       Set_Directory (Home);
-      State.Current_Path := new String'(Home);
+      State.Current_Path := To_Unbounded_String (Home);
       State.Current_Depth := 0;
    end Go_Home;
 
@@ -77,12 +77,20 @@ package body Navigator is
       Entry_Info : Directory_Entry_Type;
    begin
       Terminal.Clear_Screen;
-      Terminal.Show_Header ("Current: " & State.Current_Path.all);
+      Terminal.Show_Header ("Current: " & To_String (State.Current_Path));
       Put_Line ("Depth: " & State.Current_Depth'Image & " / " & 
-                State.Config.Max_Depth'Image);
+                State.Cfg.Max_Depth'Image);
       Put_Line ("");
 
-      Start_Search (Search, State.Current_Path.all, "");
+      begin
+         Start_Search (Search, To_String (State.Current_Path), "");
+      exception
+         when Ada.Directories.Use_Error =>
+            Terminal.Error ("Cannot read directory (permission denied)");
+            Put_Line ("");
+            Put_Line ("========================================");
+            return;
+      end;
 
       while More_Entries (Search) loop
          Get_Next_Entry (Search, Entry_Info);
@@ -122,7 +130,7 @@ package body Navigator is
 
    function Current_Directory (State : Navigation_State) return String is
    begin
-      return State.Current_Path.all;
+      return To_String (State.Current_Path);
    end Current_Directory;
 
    function Current_Depth (State : Navigation_State) return Natural is
@@ -132,12 +140,12 @@ package body Navigator is
 
    function At_Max_Depth (State : Navigation_State) return Boolean is
    begin
-      return State.Current_Depth >= State.Config.Max_Depth;
+      return State.Current_Depth >= State.Cfg.Max_Depth;
    end At_Max_Depth;
 
    procedure Navigate_Interactive
-     (State     : in out Navigation_State;
-      Bookmarks : in out Bookmarks.Bookmark_Map)
+     (State : in out Navigation_State;
+      BM    : in out Bookmarks.Bookmark_Map)
    is
       Continue : Boolean := True;
    begin
@@ -180,13 +188,13 @@ package body Navigator is
                Go_Home (State);
 
             elsif Choice = "b" or Choice = "B" then
-               Bookmarks.List_All (Bookmarks);
+               Bookmarks.List_All (BM);
                declare
                   BM_Name : constant String := Terminal.Prompt ("Enter bookmark name (or Enter to skip)");
                begin
-                  if BM_Name /= "" and then Bookmarks.Exists (Bookmarks, BM_Name) then
+                  if BM_Name /= "" and then Bookmarks.Exists (BM, BM_Name) then
                      declare
-                        BM_Path : constant String := Bookmarks.Get_Path (Bookmarks, BM_Name);
+                        BM_Path : constant String := Bookmarks.Get_Path (BM, BM_Name);
                      begin
                         if Ada.Directories.Exists (BM_Path) then
                            Change_Directory (State, BM_Path);
@@ -202,7 +210,7 @@ package body Navigator is
                   BM_Name : constant String := Terminal.Prompt ("Bookmark name");
                begin
                   if BM_Name /= "" then
-                     Bookmarks.Add (Bookmarks, BM_Name, State.Current_Path.all);
+                     Bookmarks.Add (BM, BM_Name, To_String (State.Current_Path));
                      Terminal.Success ("Bookmark '" & BM_Name & "' added");
                   end if;
                end;
@@ -210,7 +218,7 @@ package body Navigator is
             elsif Choice /= "" then
                -- Try to navigate to the directory
                declare
-                  Target : constant String := State.Current_Path.all & "/" & Choice;
+                  Target : constant String := To_String (State.Current_Path) & "/" & Choice;
                begin
                   if Ada.Directories.Exists (Target) and then 
                      Ada.Directories.Kind (Target) = Directory then
@@ -220,7 +228,7 @@ package body Navigator is
                      delay 1.0;  -- Brief pause to show error
                   end if;
                exception
-                  when Name_Error =>
+                  when Ada.Directories.Name_Error =>
                      Terminal.Error ("Directory not found: " & Choice);
                      delay 1.0;
                end;

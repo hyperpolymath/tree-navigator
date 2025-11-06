@@ -4,6 +4,7 @@ with Ada.Command_Line;
 with Ada.Environment_Variables;
 with Ada.Directories;
 with Terminal;
+with Ada.Exceptions;
 with Config;
 with Bookmarks;
 with Navigator;
