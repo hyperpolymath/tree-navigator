@@ -1,7 +1,7 @@
 cat > README.md << 'EOF'
 # 🌲 Tree Navigator
 
-> A powerful, type-safe directory tree export and navigation tool written in Ada 2022
+> A powerful, type-safe directory tree export and navigation tool written in Ada Owith its safety and compile time guarantees)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Ada 2022](https://img.shields.io/badge/Ada-2022-blue.svg)](https://www.adacore.com/)
@@ -350,7 +350,7 @@ Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## 📝 License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+MIT & Palimpsest Dual License - see [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
@@ -369,140 +369,3 @@ MIT License - see [LICENSE](LICENSE) file for details.
 Found a bug or have a feature request? [Open an issue](https://github.com/yourusername/tree-navigator/issues)!
 
 ---
-
-**Built with ❤️ and Ada 2022** | **Solving real problems with compile-time guarantees**
-EOF
-
-# Create a man page too
-mkdir -p man
-cat > man/tree-navigator.1 << 'EOF'
-.TH TREE-NAVIGATOR 1 "November 2024" "Tree Navigator 2.0" "User Commands"
-.SH NAME
-tree-navigator \- type-safe directory tree visualization and export tool
-.SH SYNOPSIS
-.B tree-navigator
-[\fB\-\-export\fR \fIFILE\fR]
-[\fB\-\-dir\fR \fIPATH\fR]
-[\fB\-\-max-depth\fR \fIN\fR]
-[\fB\-\-exclude-dirs\fR \fILIST\fR]
-[\fB\-\-exclude-files\fR \fILIST\fR]
-[\fB\-\-only-type\fR \fITYPE\fR]
-[\fIOPTIONS\fR]
-.SH DESCRIPTION
-.B tree-navigator
-is a powerful directory tree visualization tool that provides extensive filtering capabilities for managing large project trees. Built with Ada 2022, it offers compile-time safety and robust error handling.
-.PP
-The tool operates in two modes: export mode for saving filtered directory trees to files, and interactive mode for navigating directories with depth control and bookmarking.
-.SH OPTIONS
-.SS "General Options"
-.TP
-.BR \-h ", " \-\-help
-Display help message and exit
-.TP
-.BR \-v ", " \-\-version
-Display version information and exit
-.TP
-.BR \-\-no-color
-Disable colored output
-.TP
-.BR \-\-verbose
-Enable verbose output
-.SS "Export Mode Options"
-.TP
-.BR \-\-export " " \fIFILE\fR
-Export directory tree to FILE (enables export mode)
-.TP
-.BR \-\-output " " \fIFILE\fR
-Alternative way to specify output file
-.TP
-.BR \-\-dir " " \fIPATH\fR
-Root directory to export (default: current directory)
-.SS "Filtering Options"
-.TP
-.BR \-\-max-depth " " \fIN\fR
-Maximum depth to traverse (default: 10)
-.TP
-.BR \-\-show-hidden
-Include hidden files (starting with .)
-.TP
-.BR \-\-no-files
-Only show directories
-.TP
-.BR \-\-no-dirs
-Only show files
-.TP
-.BR \-\-show-size
-Display file sizes in bytes
-.TP
-.BR \-\-exclude-dirs " " \fILIST\fR
-Comma-separated list of directories to exclude (e.g., target,node_modules,.git)
-.TP
-.BR \-\-exclude-files " " \fILIST\fR
-Comma-separated list of files or patterns to exclude (e.g., *.o,*.tmp,*.log)
-.TP
-.BR \-\-only-type " " \fITYPE\fR
-Only show specific file type. Valid types: directory, executable, config, script, data, hidden, regular
-.SS "Interactive Mode Options"
-.TP
-.BR \-d ", " \-\-depth " " \fIN\fR
-Set maximum navigation depth
-.SH EXAMPLES
-.TP
-Export basic tree:
-.B tree-navigator \-\-export output.txt
-.TP
-Rust project (exclude build directory):
-.B tree-navigator \-\-export rust-tree.txt \-\-exclude-dirs target
-.TP
-Node.js project (exclude dependencies):
-.B tree-navigator \-\-export node-tree.txt \-\-exclude-dirs node_modules
-.TP
-Show only executables with sizes:
-.B tree-navigator \-\-export bins.txt \-\-only-type executable \-\-show-size
-.TP
-Clean source tree (exclude artifacts):
-.B tree-navigator \-\-export source.txt \-\-exclude-files '*.o,*.ali,*.so'
-.TP
-Interactive navigation:
-.B tree-navigator
-.SH FILES
-.TP
-.I ~/.config/tree-navigator/
-Configuration directory
-.TP
-.I ~/.config/tree-navigator/bookmarks.txt
-Saved bookmarks
-.TP
-.I ~/.cache/tree-navigator/
-Cache directory
-.SH EXIT STATUS
-.TP
-.B 0
-Success
-.TP
-.B 1
-General error
-.SH AUTHOR
-Written by Tree Navigator Contributors
-.SH REPORTING BUGS
-Report bugs at: <https://github.com/yourusername/tree-navigator/issues>
-.SH COPYRIGHT
-Copyright \(co 2024 Tree Navigator Contributors
-.br
-Licensed under the MIT License
-.SH SEE ALSO
-.BR tree (1),
-.BR find (1),
-.BR ls (1)
-EOF
-
-echo ""
-echo "✅ Complete! All files created including:"
-echo "  - Full tree export functionality"
-echo "  - Comprehensive CLI options"
-echo "  - Updated README.md"
-echo "  - Man page (man/tree-navigator.1)"
-echo ""
-echo "Install man page:"
-echo "  sudo cp man/tree-navigator.1 /usr/local/share/man/man1/"
-echo "  man tree-navigator"
