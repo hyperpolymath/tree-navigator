@@ -1,4 +1,3 @@
-cat > README.md << 'EOF'
 # 🌲 Tree Navigator
 
 > A powerful, type-safe directory tree export and navigation tool written in Ada Owith its safety and compile time guarantees)
