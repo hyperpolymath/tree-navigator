@@ -1,6 +1,6 @@
 # 🌲 Tree Navigator
 
-> A powerful, type-safe directory tree export and navigation tool written in Ada Owith its safety and compile time guarantees)
+> A powerful, type-safe directory tree export and navigation tool written in Ada 2022
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Ada 2022](https://img.shields.io/badge/Ada-2022-blue.svg)](https://www.adacore.com/)
@@ -349,7 +349,7 @@ Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## 📝 License
 
-MIT & Palimpsest Dual License - see [LICENSE](LICENSE) file for details.
+MIT License - see [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
@@ -368,3 +368,5 @@ MIT & Palimpsest Dual License - see [LICENSE](LICENSE) file for details.
 Found a bug or have a feature request? [Open an issue](https://github.com/yourusername/tree-navigator/issues)!
 
 ---
+
+**Built with ❤️ and Ada 2022** | **Solving real problems with compile-time guarantees**

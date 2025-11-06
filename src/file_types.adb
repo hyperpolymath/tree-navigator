@@ -1,6 +1,5 @@
 pragma Ada_2022;
 with Ada.Strings.Fixed;
-with Ada.Directories;
 
 package body File_Types is
 
@@ -72,7 +71,7 @@ package body File_Types is
 
    function Has_Extension (Path : String; Ext : String) return Boolean is
       use Ada.Strings.Fixed;
-      Ext_Pos : constant Natural := Index (Path, Ext, Going => Ada.Strings.Backward);
+      Ext_Pos : constant Natural := Index (Path, Ext, Ada.Strings.Backward);
    begin
       return Ext_Pos > 0 and then Ext_Pos = Path'Last - Ext'Length + 1;
    end Has_Extension;

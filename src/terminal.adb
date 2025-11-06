@@ -1,22 +1,23 @@
 pragma Ada_2022;
 with Ada.Text_IO; use Ada.Text_IO;
-with Ada.Strings.Fixed; use Ada.Strings.Fixed;
-with Ada.Characters.Latin_1;
+with Ada.Strings.Fixed;
+with Ada.Characters.Handling;
 
 package body Terminal is
 
+   -- ANSI Color codes
    function Color_Code (Color : Color_Type) return String is
    begin
       case Color is
-         when Reset   => return Character'Val (16#1B#) & "[0m";
-         when Red     => return Character'Val (16#1B#) & "[0;31m";
-         when Green   => return Character'Val (16#1B#) & "[0;32m";
-         when Yellow  => return Character'Val (16#1B#) & "[1;33m";
-         when Blue    => return Character'Val (16#1B#) & "[0;34m";
-         when Magenta => return Character'Val (16#1B#) & "[0;35m";
-         when Cyan    => return Character'Val (16#1B#) & "[0;36m";
-         when White   => return Character'Val (16#1B#) & "[1;37m";
-         when Bold    => return Character'Val (16#1B#) & "[1m";
+         when Reset   => return ASCII.ESC & "[0m";
+         when Red     => return ASCII.ESC & "[31m";
+         when Green   => return ASCII.ESC & "[32m";
+         when Yellow  => return ASCII.ESC & "[33m";
+         when Blue    => return ASCII.ESC & "[34m";
+         when Magenta => return ASCII.ESC & "[35m";
+         when Cyan    => return ASCII.ESC & "[36m";
+         when White   => return ASCII.ESC & "[37m";
+         when Bold    => return ASCII.ESC & "[1m";
       end case;
    end Color_Code;
 
@@ -30,70 +31,9 @@ package body Terminal is
       Put_Line (Color_Code (Color) & Text & Color_Code (Reset));
    end Put_Line_Colored;
 
-   procedure Success (Message : String) is
-   begin
-      Put_Colored ("[✓] ", Green);
-      Put_Line (Message);
-   end Success;
-
-   procedure Error (Message : String) is
-   begin
-      Put_Colored ("[✗] ", Red);
-      Put_Line (Message);
-   end Error;
-
-   procedure Warning (Message : String) is
-   begin
-      Put_Colored ("[!] ", Yellow);
-      Put_Line (Message);
-   end Warning;
-
-   procedure Info (Message : String) is
-   begin
-      Put_Colored ("[i] ", Blue);
-      Put_Line (Message);
-   end Info;
-
-   procedure Debug (Message : String; Verbose : Boolean := False) is
-   begin
-      if Verbose then
-         Put_Colored ("[D] ", Cyan);
-         Put_Line (Message);
-      end if;
-   end Debug;
-
-   function Prompt (Message : String; Default : String := "") return String is
-      Input : String (1 .. 256);
-      Last  : Natural;
-   begin
-      Put (Message);
-      if Default /= "" then
-         Put (" [" & Default & "]");
-      end if;
-      Put (": ");
-
-      Get_Line (Input, Last);
-
-      if Last = 0 and Default /= "" then
-         return Default;
-      elsif Last > 0 then
-         return Input (1 .. Last);
-      else
-         return "";
-      end if;
-   end Prompt;
-
-   function Confirm (Message : String; Default : Boolean := False) return Boolean is
-      Response : constant String := Prompt (Message & " (y/n)", 
-                                           (if Default then "y" else "n"));
-   begin
-      return Response'Length > 0 and then (Response (1) = 'y' or Response (1) = 'Y');
-   end Confirm;
-
    procedure Clear_Screen is
    begin
-      Put (Character'Val (16#1B#) & "[2J");  -- Clear screen
-      Put (Character'Val (16#1B#) & "[H");   -- Move cursor to home
+      Put (ASCII.ESC & "[2J" & ASCII.ESC & "[H");
    end Clear_Screen;
 
    procedure Show_Header (Title : String; Width : Positive := 80) is
@@ -107,5 +47,67 @@ package body Terminal is
       Put_Line_Colored (Title, Bold);
       Put_Line_Colored (Border, Cyan);
    end Show_Header;
+
+   function Prompt (Message : String; Default : String := "") return String is
+   begin
+      if Default /= "" then
+         Put (Message & " [" & Default & "]: ");
+      else
+         Put (Message & ": ");
+      end if;
+      
+      declare
+         Response : constant String := Ada.Strings.Fixed.Trim (Get_Line, Ada.Strings.Both);
+      begin
+         if Response = "" and Default /= "" then
+            return Default;
+         else
+            return Response;
+         end if;
+      end;
+   end Prompt;
+
+   function Confirm (Message : String; Default : Boolean := False) return Boolean is
+      Default_Str : constant String := (if Default then "Y/n" else "y/N");
+      Response : constant String := Prompt (Message & " (" & Default_Str & ")");
+      Trimmed : constant String := Ada.Strings.Fixed.Trim (Response, Ada.Strings.Both);
+   begin
+      if Trimmed = "" then
+         return Default;
+      end if;
+      
+      declare
+         First_Char : constant Character := Ada.Characters.Handling.To_Lower (Trimmed (Trimmed'First));
+      begin
+         return First_Char = 'y';
+      end;
+   end Confirm;
+
+   procedure Success (Message : String) is
+   begin
+      Put_Line_Colored ("[✓] " & Message, Green);
+   end Success;
+
+   procedure Error (Message : String) is
+   begin
+      Put_Line_Colored ("[✗] " & Message, Red);
+   end Error;
+
+   procedure Warning (Message : String) is
+   begin
+      Put_Line_Colored ("[!] " & Message, Yellow);
+   end Warning;
+
+   procedure Info (Message : String) is
+   begin
+      Put_Line_Colored ("[i] " & Message, Cyan);
+   end Info;
+
+   procedure Debug (Message : String; Verbose : Boolean := False) is
+   begin
+      if Verbose then
+         Put_Line_Colored ("[D] " & Message, Blue);
+      end if;
+   end Debug;
 
 end Terminal;

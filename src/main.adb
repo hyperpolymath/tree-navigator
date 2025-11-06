@@ -36,7 +36,7 @@ procedure Main is
    -- Show help
    procedure Show_Help is
    begin
-      Terminal.Show_Header ("Enhanced Tree Navigator v2.0 (Ada Edition)");
+      Terminal.Show_Header ("Enhanced Tree Navigator v2.0 (Ada Edition)")
       Put_Line ("");
       Put_Line ("USAGE:");
       Put_Line ("    tree-navigator [OPTIONS] [DEPTH]");
@@ -56,10 +56,6 @@ procedure Main is
    end Show_Help;
 
 begin
-   -- Show banner
-   Terminal.Show_Header ("Enhanced Tree Navigator v2.0");
-   Terminal.Info ("Ada 2022 Edition - Type-Safe System Navigation");
-   Put_Line ("");
 
    -- Initialize
    Initialize_Paths;
