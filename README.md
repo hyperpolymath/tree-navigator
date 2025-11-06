@@ -349,7 +349,7 @@ Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ## 📝 License
 
-MIT License - see [LICENSE](LICENSE) file for details.
+MIT & Palimpsest 0.6 Dual License - see [LICENSE](LICENSE) file for details.
 
 ## 🙏 Acknowledgments
 
@@ -369,4 +369,4 @@ Found a bug or have a feature request? [Open an issue](https://github.com/yourus
 
 ---
 
-**Built with ❤️ and Ada 2022** | **Solving real problems with compile-time guarantees**
+**Built with Ada 2022** | **Solving real problems with compile-time guarantees**
