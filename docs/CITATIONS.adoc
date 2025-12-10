@@ -1,0 +1,36 @@
+= tree-navigator - Citation Guide
+:toc:
+
+== BibTeX
+
+[source,bibtex]
+----
+@software{tree-navigator_2025,
+  author = {Polymath, Hyper},
+  title = {tree-navigator},
+  year = {2025},
+  url = {https://github.com/hyperpolymath/tree-navigator},
+  license = {AGPL-3.0-or-later}
+}
+----
+
+== Harvard Style
+
+Polymath, H. (2025) _tree-navigator_ [Computer software]. Available at: https://github.com/hyperpolymath/tree-navigator
+
+== OSCOLA
+
+Hyper Polymath, 'tree-navigator' (2025) <https://github.com/hyperpolymath/tree-navigator>
+
+== MLA
+
+Polymath, Hyper. "tree-navigator." 2025, github.com/hyperpolymath/tree-navigator.
+
+== APA 7
+
+Polymath, H. (2025). _tree-navigator_ [Computer software]. GitHub. https://github.com/hyperpolymath/tree-navigator
+
+== See Also
+
+* link:../CITATION.cff[CITATION.cff]
+* link:../codemeta.json[codemeta.json]
