@@ -1,37 +1,79 @@
-# Ada/GNAT compiled object files
-*.o
-*.ali
-*.so
-*.a
+# SPDX-License-Identifier: AGPL-3.0-or-later
+# RSR-compliant .gitignore
 
-# Build directories
-obj/
-bin/
-lib/
-
-# GNAT project files (keep the source, ignore generated)
-*.cgpr
-*.lexch
-*.bexch
-
-# Editor and IDE files
-*~
-*.swp
-*.swo
-.vscode/
-.idea/
-*.sublime-*
-
-# OS files
+# OS & Editor
 .DS_Store
 Thumbs.db
-*.tmp
-
-# User data
-.cache/
-.config/tree-navigator/
-
-# Backup files
-*.bak
-*.backup
+*.swp
+*.swo
 *~
+.idea/
+.vscode/
+
+# Build
+/target/
+/_build/
+/build/
+/dist/
+/out/
+
+# Dependencies
+/node_modules/
+/vendor/
+/deps/
+/.elixir_ls/
+
+# Rust
+# Cargo.lock  # Keep for binaries
+
+# Elixir
+/cover/
+/doc/
+*.ez
+erl_crash.dump
+
+# Julia
+*.jl.cov
+*.jl.mem
+/Manifest.toml
+
+# ReScript
+/lib/bs/
+/.bsb.lock
+
+# Python (SaltStack only)
+__pycache__/
+*.py[cod]
+.venv/
+
+# Ada/SPARK
+*.ali
+/obj/
+/bin/
+
+# Haskell
+/.stack-work/
+/dist-newstyle/
+
+# Chapel
+*.chpl.tmp.*
+
+# Secrets
+.env
+.env.*
+*.pem
+*.key
+secrets/
+
+# Test/Coverage
+/coverage/
+htmlcov/
+
+# Logs
+*.log
+/logs/
+
+# Temp
+/tmp/
+*.tmp
+*.bak
