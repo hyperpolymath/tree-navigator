@@ -426,28 +426,35 @@ ci-deploy-stage:
     @echo "🚀 CI Deploy stage"
     @echo "Not implemented yet"
 
-# Install with short alias 'tn'
+# Install with short aliases 'tn' and 'treenav'
 install-tn: release
-    @echo "📦 Installing Tree Navigator with 'tn' alias..."
+    @echo "📦 Installing Tree Navigator with aliases..."
     sudo install -m 755 bin/main /usr/local/bin/tn
+    sudo ln -sf /usr/local/bin/tn /usr/local/bin/treenav
     sudo ln -sf /usr/local/bin/tn /usr/local/bin/tree-navigator
     sudo mkdir -p /usr/local/share/man/man1
     sudo cp man/tree-navigator.1 /usr/local/share/man/man1/
+    sudo ln -sf tree-navigator.1.gz /usr/local/share/man/man1/tn.1.gz 2>/dev/null || true
+    sudo ln -sf tree-navigator.1.gz /usr/local/share/man/man1/treenav.1.gz 2>/dev/null || true
     sudo gzip -f /usr/local/share/man/man1/tree-navigator.1
     sudo mandb 2>/dev/null || true
     @echo "✅ Installed!"
     @echo ""
-    @echo "Use: tn --help"
-    @echo "Or:  tree-navigator --help"
+    @echo "Commands available:"
+    @echo "  tn             # shortest"
+    @echo "  treenav        # medium"
+    @echo "  tree-navigator # full name"
     @echo ""
-    @echo "Add shell alias:"
-    @echo "  echo \"alias tn='tree-navigator'\" >> ~/.bashrc"
+    @echo "Try: tn --help"
 
-# Uninstall tn
+# Uninstall tn, treenav, and tree-navigator
 uninstall-tn:
     @echo "🗑️  Uninstalling Tree Navigator..."
     sudo rm -f /usr/local/bin/tn
+    sudo rm -f /usr/local/bin/treenav
     sudo rm -f /usr/local/bin/tree-navigator
     sudo rm -f /usr/local/share/man/man1/tree-navigator.1.gz
+    sudo rm -f /usr/local/share/man/man1/tn.1.gz
+    sudo rm -f /usr/local/share/man/man1/treenav.1.gz
     sudo mandb 2>/dev/null || true
     @echo "✅ Uninstalled"

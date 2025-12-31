@@ -1,3 +1,4 @@
+-- SPDX-License-Identifier: AGPL-3.0-or-later
 -- Bookmark management with persistence
 pragma Ada_2022;
 with Ada.Calendar;

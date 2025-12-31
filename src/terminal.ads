@@ -1,3 +1,4 @@
+-- SPDX-License-Identifier: AGPL-3.0-or-later
 -- Terminal utilities for colored output and user interaction
 pragma Ada_2022;
 

@@ -1,3 +1,5 @@
+-- SPDX-License-Identifier: AGPL-3.0-or-later
+-- Bookmark management implementation
 pragma Ada_2022;
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Directories;

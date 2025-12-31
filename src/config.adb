@@ -1,3 +1,5 @@
+-- SPDX-License-Identifier: AGPL-3.0-or-later
+-- Configuration management implementation
 pragma Ada_2022;
 
 package body Config is

@@ -1,3 +1,5 @@
+-- SPDX-License-Identifier: AGPL-3.0-or-later
+-- Interactive directory navigation
 pragma Ada_2022;
 
 with Ada.Containers.Vectors;
