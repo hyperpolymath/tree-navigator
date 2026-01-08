@@ -1,0 +1,37 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+= Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+== [2.0.0] - 2024-11-06
+
+=== Added
+- Complete Ada 2022 rewrite from Python
+- Type-safe navigation system with compile-time guarantees
+- Interactive directory navigation with depth limiting
+- Bookmark system for frequently accessed locations
+- Color-coded file type detection
+- Configuration management with validation
+- Error handling for permission-denied directories
+- Command-line argument parsing
+- Help and version information
+
+=== Changed
+- Migrated from Python to Ada 2022 for enhanced reliability
+- Improved error messages and user feedback
+- Modernized terminal output with emojis and colors
+
+=== Technical Details
+- Uses GNAT Ada compiler with Ada 2022 standard
+- Implements unbounded strings for dynamic path handling
+- Custom terminal abstraction for cross-platform compatibility
+- Comprehensive type system for file categorization
+
+== [1.0.0] - Initial Python Version
+
+=== Added
+- Basic directory tree navigation
+- Python-based implementation
