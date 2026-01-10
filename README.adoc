@@ -329,7 +329,7 @@ tree-navigator/
 ├── tree_navigator.gpr        # GNAT project file
 ├── Makefile                  # Build automation
 ├── README.md                 # This file
-├── LICENSE                   # MIT License
+├── LICENSE                   # Palimpsest-MPL-1.0 License
 ├── CONTRIBUTING.md           # Contribution guidelines
 └── CHANGELOG.md              # Version history
 ```
