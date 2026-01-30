@@ -1,4 +1,4 @@
-;; SPDX-License-Identifier: AGPL-3.0-or-later
+;; SPDX-License-Identifier: MPL-2.0-or-later
 ;; STATE.scm - Tree Navigator project state
 ;; Updated: 2025-12-31
 
