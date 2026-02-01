@@ -242,7 +242,12 @@ package body Tree_Printer is
       Output   : File_Type;
       Root_Dir : constant String := To_String (Options.Root_Dir);
    begin
-      Stats := (others => 0);
+      Stats.Total_Dirs := 0;
+      Stats.Total_Files := 0;
+      Stats.Total_Size := 0;
+      Stats.Excluded_Dirs := 0;
+      Stats.Excluded_Files := 0;
+      Stats.Errors := 0;
 
       Create (Output, Out_File, To_String (Options.Output_File));
 
@@ -290,7 +295,12 @@ package body Tree_Printer is
    is
       Root_Dir : constant String := To_String (Options.Root_Dir);
    begin
-      Stats := (others => 0);
+      Stats.Total_Dirs := 0;
+      Stats.Total_Files := 0;
+      Stats.Total_Size := 0;
+      Stats.Excluded_Dirs := 0;
+      Stats.Excluded_Files := 0;
+      Stats.Errors := 0;
 
       -- Write header
       Terminal.Show_Header ("Directory tree: " & Root_Dir);

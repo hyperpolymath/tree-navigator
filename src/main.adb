@@ -105,7 +105,7 @@ procedure Main is
    end Parse_File_Type;
 
    -- Parse command line arguments
-   procedure Parse_Arguments is
+   function Parse_Arguments return Boolean is
       I : Positive := 1;
       Arg_Count : constant Natural := Ada.Command_Line.Argument_Count;
    begin
@@ -116,12 +116,12 @@ procedure Main is
             if Arg = "-h" or Arg = "--help" then
                Show_Help;
                Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Success);
-               return;
+               return True;
 
             elsif Arg = "-v" or Arg = "--version" then
                Put_Line ("tree-navigator 2.1.0 (Ada 2022)");
                Put_Line ("Aliases: tn, treenav");
-               return;
+               return True;
 
             elsif Arg = "--no-color" then
                Cfg.Color_Mode := False;
@@ -201,12 +201,13 @@ procedure Main is
                      Terminal.Error ("Unknown option or invalid depth: " & Arg);
                      Terminal.Info ("Use --help for usage information");
                      Ada.Command_Line.Set_Exit_Status (Ada.Command_Line.Failure);
-                     return;
+                     return True;
                end;
             end if;
          end;
          I := I + 1;
       end loop;
+      return False;
    end Parse_Arguments;
 
 begin
@@ -214,11 +215,8 @@ begin
    Initialize_Paths;
    Config.Load (Cfg, Paths);
 
-   -- Parse arguments
-   Parse_Arguments;
-
-   -- Check if early exit (help/version)
-   if Ada.Command_Line.Exit_Status = Ada.Command_Line.Failure then
+   -- Parse arguments & exit if needed
+   if Parse_Arguments then
       return;
    end if;
 
