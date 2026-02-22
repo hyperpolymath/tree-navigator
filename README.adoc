@@ -415,3 +415,8 @@ Found a bug or have a feature request? [Open an issue](https://github.com/yourus
 ---
 
 *Built with Ada 2022* | *Solving real problems with compile-time guarantees*
+
+
+== Architecture
+
+See link:TOPOLOGY.md[TOPOLOGY.md] for a visual architecture map and completion dashboard.
