@@ -458,3 +458,8 @@ uninstall-tn:
     sudo rm -f /usr/local/share/man/man1/treenav.1.gz
     sudo mandb 2>/dev/null || true
     @echo "✅ Uninstalled"
+
+# [AUTO-GENERATED] Multi-arch / RISC-V target
+build-riscv:
+	@echo "Building for RISC-V..."
+	cross build --target riscv64gc-unknown-linux-gnu
