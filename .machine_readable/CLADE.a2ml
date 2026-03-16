@@ -1,0 +1,26 @@
+# SPDX-License-Identifier: PMPL-1.0-or-later
+# Clade declaration — part of the gv-clade-index registry
+# See: https://github.com/hyperpolymath/gv-clade-index
+
+[identity]
+uuid = "c798e1bf-9ea8-5ceb-8f80-ae3a1b5cd761"
+primary-forge = "github"
+primary-owner = "hyperpolymath"
+canonical-name = "tree-navigator"
+prefixed-name = "rm-tree-navigator"
+
+[clade]
+primary = "rm"
+secondary = []
+assigned = "2026-03-16"
+rationale = ""
+
+[forges]
+github = "hyperpolymath/tree-navigator"
+gitlab = "hyperpolymath/tree-navigator"
+bitbucket = "hyperpolymath/tree-navigator"
+
+[lineage]
+type = "standalone"
+parent = "Repository tree navigation tool"
+born = "2026-03-16"
