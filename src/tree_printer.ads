@@ -1,4 +1,4 @@
--- SPDX-License-Identifier: AGPL-3.0-or-later
+-- SPDX-License-Identifier: PMPL-1.0-or-later
 -- Tree export engine for directory visualization
 pragma Ada_2022;
 with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;

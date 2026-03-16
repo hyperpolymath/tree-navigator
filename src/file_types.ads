@@ -1,4 +1,4 @@
--- SPDX-License-Identifier: AGPL-3.0-or-later
+-- SPDX-License-Identifier: PMPL-1.0-or-later
 -- File type detection and classification
 pragma Ada_2022;
 with Ada.Directories;
