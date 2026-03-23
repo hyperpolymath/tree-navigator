@@ -17,13 +17,19 @@ with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Command_Line;
 with Ada.Environment_Variables;
 with Ada.Directories;
--- ... [other imports]
+with Config;
+with Navigator;
+with Bookmarks;
+with Tree_Printer;
 
 procedure Main is
    Cfg : Config.Configuration;
    Paths : Config.File_Paths;
    State : Navigator.Navigation_State;
    BM_Map : Bookmarks.Bookmark_Map;
+   Export_Mode : Boolean := False;
+   Export_Opts : Tree_Printer.Export_Options;
+   Stats : Tree_Printer.Tree_Statistics;
 
    -- CONFIGURATION: Sets up the standard paths for config and cache.
    procedure Initialize_Paths is
