@@ -9,6 +9,8 @@
 set shell := ["bash", "-uc"]
 
 # Default recipe (runs when you type 'just')
+import? "contractile.just"
+
 default:
     @just --list
 
