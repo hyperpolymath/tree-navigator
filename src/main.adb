@@ -1,4 +1,4 @@
--- SPDX-License-Identifier: PMPL-1.0-or-later
+-- SPDX-License-Identifier: MPL-2.0
 -- Tree Navigator — High-Assurance Directory Visualization.
 --
 -- This Ada 2022 module implements the primary logic for the `tn` utility.

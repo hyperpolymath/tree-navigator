@@ -1,4 +1,4 @@
--- SPDX-License-Identifier: PMPL-1.0-or-later
+-- SPDX-License-Identifier: MPL-2.0
 -- Terminal utilities implementation
 pragma Ada_2022;
 with Ada.Text_IO; use Ada.Text_IO;
