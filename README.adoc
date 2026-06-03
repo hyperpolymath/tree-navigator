@@ -1,21 +1,17 @@
+// SPDX-License-Identifier: MPL-2.0
+// Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 = 🌲 Tree Navigator
+image:https://img.shields.io/badge/OpenSSF-Best_Practices-green?logo=openssourcesecurity[OpenSSF Best Practices,link="https://www.bestpractices.dev/en/projects/new?repo_url=https://github.com/hyperpolymath/tree-navigator"]
 
-image:https://img.shields.io/badge/License-MPL_2.0-blue.svg[MPL-2.0-or-later,link="https://opensource.org/licenses/MPL-2.0"]
+
+image:https://img.shields.io/badge/License-MPL_2.0-blue.svg[License: MPL-2.0,link="https://opensource.org/licenses/MPL-2.0"]
 image:https://img.shields.io/badge/Philosophy-Palimpsest-indigo.svg[Palimpsest,link="https://github.com/hyperpolymath/palimpsest-license"]
 
 == License & Philosophy
 
-This project must declare **MPL-2.0-or-later** for platform/tooling compatibility.
+This project is licensed under the Mozilla Public License, v. 2.0. See the `LICENSE` file for details.
 
-Philosophy: **Palimpsest**. The Palimpsest-MPL (PMPL) text is provided in `license/PMPL-1.0.txt`, and the canonical source is the palimpsest-license repository.
-
-
-> A powerful, type-safe directory tree export and navigation tool written in Ada 2022
-
-[![Ada 2022](https://img.shields.io/badge/Ada-2022-blue.svg)](https://www.adacore.com/)
-[![Build](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
-
-*Tree Navigator* is a professional-grade directory tree visualization and export tool that solves the common problem of overwhelming `tree` output in large projects (especially Rust, Node.js, and other projects with massive dependency directories). Built with Ada 2022, it provides compile-time safety, extensive filtering options, and clean, readable output.
+SPDX-License-Identifier: MPL-2.0
 
 == 🎯 Why Tree Navigator?
 
