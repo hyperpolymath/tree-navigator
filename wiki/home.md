@@ -1,3 +1,7 @@
+<!--
+SPDX-License-Identifier: MPL-2.0
+Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
+-->
 # 🌲 Tree Navigator Wiki
 
 Welcome to the Tree Navigator documentation! This wiki provides comprehensive guides for using, developing, and deploying Tree Navigator.

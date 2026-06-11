@@ -1,3 +1,5 @@
+// SPDX-License-Identifier: MPL-2.0
+// Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
 # ============================================================================
 # Tree Navigator - Complete GitLab CI/CD Pipeline
 # This is the SINGLE, COMPLETE CI/CD configuration
@@ -431,3 +433,9 @@ workflow:
     - if: '$CI_COMMIT_BRANCH == "main"'
     - if: '$CI_PIPELINE_SOURCE == "schedule"'
     - when: never
+
+trufflehog:
+  stage: security
+  image: trufflesecurity/trufflehog:latest
+  script:
+    - trufflehog git file://. --only-verified --fail
