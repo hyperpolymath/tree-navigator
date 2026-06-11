@@ -6,10 +6,8 @@ on:
   pull_request:
   schedule:
     - cron: '0 5 * * *'
-
 permissions:
   contents: read
-
 jobs:
   # DEPENDABILITY - Stability and reliability
   dependability:
@@ -32,7 +30,6 @@ jobs:
           # Check for proper error handling patterns
           PANICS=$(grep -rE "panic!|unwrap\(\)|expect\(" --include="*.rs" . 2>/dev/null | wc -l || echo "0")
           echo "Rust panics/unwraps: $PANICS"
-
   # SECURITY - Multi-layer security scanning
   security:
     runs-on: ubuntu-latest
@@ -55,7 +52,6 @@ jobs:
       - name: SAST scan
         uses: returntocorp/semgrep-action@713efdd345f3035192eaa63f56867b88e63e4e5d # v1
         continue-on-error: true
-
   # INTEROPERABILITY - API and format compatibility
   interoperability:
     runs-on: ubuntu-latest
@@ -75,7 +71,6 @@ jobs:
       - name: Validate JSON/YAML schemas
         run: |
           find . -name "*.json" -exec python3 -m json.tool {} \; 2>/dev/null | head -5 || true
-
   # VALIDATION - Input/output validation
   validation:
     runs-on: ubuntu-latest
@@ -88,7 +83,6 @@ jobs:
         run: |
           VALIDATION=$(grep -rE "validate|sanitize|Schema|Validator" --include="*.rs" --include="*.res" --include="*.ex" . 2>/dev/null | wc -l || echo "0")
           echo "Validation patterns found: $VALIDATION"
-
   # ATTESTATION - Supply chain integrity (SLSA)
   attestation:
     runs-on: ubuntu-latest
@@ -109,7 +103,6 @@ jobs:
           if [ -f "CHECKSUMS.txt" ] || [ -f "SHA256SUMS" ]; then
             echo "✅ Checksums file present"
           fi
-
   # VERIFICATION - Formal methods where applicable
   verification:
     runs-on: ubuntu-latest
@@ -128,7 +121,6 @@ jobs:
           if [ -f "rescript.json" ]; then
             echo "ReScript provides 100% type coverage"
           fi
-
   # FUNCTIONALITY - Feature completeness
   functionality:
     runs-on: ubuntu-latest
@@ -144,7 +136,6 @@ jobs:
       - name: Check deprecated usage
         run: |
           grep -rn "deprecated\|DEPRECATED" . 2>/dev/null | head -10 || echo "No deprecations"
-
   # PERFORMANCE - Benchmarks and profiling
   performance:
     runs-on: ubuntu-latest
@@ -163,7 +154,6 @@ jobs:
             cargo build --release 2>/dev/null || true
             find target/release -maxdepth 1 -type f -executable -exec ls -lh {} \; 2>/dev/null || true
           fi
-
   # ACCESSIBILITY - A11y compliance
   accessibility:
     runs-on: ubuntu-latest
@@ -181,7 +171,6 @@ jobs:
       - name: Lighthouse (if web project)
         run: |
           echo "Lighthouse would run on deployed URL"
-
   # LICENSE COMPLIANCE
   license:
     runs-on: ubuntu-latest
@@ -202,7 +191,6 @@ jobs:
         run: |
           SPDX=$(grep -rE "SPDX-License-Identifier" . 2>/dev/null | wc -l || echo "0")
           echo "Files with SPDX headers: $SPDX"
-
   # DOCUMENTATION QUALITY
   documentation:
     runs-on: ubuntu-latest

@@ -12,3 +12,8 @@ pages:
       - public
   only:
     - wiki
+trufflehog:
+  stage: security
+  image: trufflesecurity/trufflehog:latest
+  script:
+    - trufflehog git file://. --only-verified --fail
