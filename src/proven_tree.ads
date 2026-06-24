@@ -1,4 +1,4 @@
--- SPDX-License-Identifier: PMPL-1.0
+-- SPDX-License-Identifier: MPL-2.0
 -- proven_tree.ads - Ada bindings for proven SafeTree module
 --
 -- This package provides formally verified tree operations based on
