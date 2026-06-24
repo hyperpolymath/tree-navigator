@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MPL-2.0
+// SPDX-License-Identifier: CC-BY-SA-4.0
 // Template: QUICKSTART-USER.adoc — 5-minute path to working software
 // Replace tree-navigator, Tree Navigator — See README.adoc for details., just run, Tree Navigator started successfully. with actuals
 = tree-navigator — Quick Start for Users
