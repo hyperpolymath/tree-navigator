@@ -1,4 +1,4 @@
--- SPDX-License-Identifier: PMPL-1.0
+-- SPDX-License-Identifier: MPL-2.0
 -- proven_tree.adb - Ada implementation of proven SafeTree bindings
 
 pragma Ada_2022;
