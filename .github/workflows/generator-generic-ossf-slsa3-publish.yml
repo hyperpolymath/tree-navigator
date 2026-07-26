@@ -19,6 +19,7 @@ on:
   release:
     types: [created]
 permissions:
+  actions: read
   contents: read
 jobs:
   build:
