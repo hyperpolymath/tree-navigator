@@ -1,15 +1,13 @@
-<!--
-SPDX-License-Identifier: CC-BY-SA-4.0
-Copyright (c) Jonathan D.A. Jewell <j.d.a.jewell@open.ac.uk>
--->
-# Tree Navigator Installation Guide
+== Tree Navigator Installation Guide
 
 Complete installation instructions for all platforms and methods.
 
-## Quick Install
+=== Quick Install
 
-### Debian/Ubuntu
-```bash
+==== Debian/Ubuntu
+
+[source,bash]
+----
 # From PPA (recommended)
 sudo add-apt-repository ppa:hyperpolymath/tree-navigator
 sudo apt update
@@ -18,20 +16,24 @@ sudo apt install tree-navigator
 # From DEB package
 wget https://gitlab.com/hyperpolymath/tree-navigator/-/releases/v2.0.0/downloads/tree-navigator_2.0.0_amd64.deb
 sudo dpkg -i tree-navigator_2.0.0_amd64.deb
-```
+----
 
-### Fedora/RHEL/CentOS
-```bash
+==== Fedora/RHEL/CentOS
+
+[source,bash]
+----
 # From Copr (recommended)
 sudo dnf copr enable hyperpolymath/tree-navigator
 sudo dnf install tree-navigator
 
 # From RPM package
 sudo dnf install https://gitlab.com/hyperpolymath/tree-navigator/-/releases/v2.0.0/downloads/tree-navigator-2.0.0-1.x86_64.rpm
-```
+----
 
-### Arch Linux
-```bash
+==== Arch Linux
+
+[source,bash]
+----
 # From AUR
 yay -S tree-navigator
 
@@ -39,30 +41,38 @@ yay -S tree-navigator
 git clone https://aur.archlinux.org/tree-navigator.git
 cd tree-navigator
 makepkg -si
-```
+----
 
-### macOS
-```bash
+==== macOS
+
+[source,bash]
+----
 # Homebrew
 brew install tree-navigator
 
 # MacPorts
 sudo port install tree-navigator
-```
+----
 
-### Flatpak (Universal)
-```bash
+==== Flatpak (Universal)
+
+[source,bash]
+----
 flatpak install flathub com.gitlab.hyperpolymath.TreeNavigator
 flatpak run com.gitlab.hyperpolymath.TreeNavigator
-```
+----
 
-### Snap (Universal)
-```bash
+==== Snap (Universal)
+
+[source,bash]
+----
 sudo snap install tree-navigator
-```
+----
 
-### From Source
-```bash
+==== From Source
+
+[source,bash]
+----
 # Install dependencies
 sudo dnf install gcc-gnat gprbuild  # Fedora
 sudo apt install gnat-13 gprbuild   # Debian/Ubuntu
@@ -77,67 +87,85 @@ sudo cp bin/main /usr/local/bin/tn
 sudo cp man/tree-navigator.1 /usr/local/share/man/man1/
 sudo gzip /usr/local/share/man/man1/tree-navigator.1
 sudo mandb
-```
+----
 
-## Shell Alias Setup
+=== Shell Alias Setup
 
-Tree Navigator installs as `tree-navigator`, but we recommend the short alias **`tn`** (Tree Navigator).
+Tree Navigator installs as `+tree-navigator+`, but we recommend the
+short alias *`+tn+`* (Tree Navigator).
 
-### Why `tn`?
+==== Why `+tn+`?
 
-- ✅ Short and memorable
-- ✅ Doesn't conflict with existing commands
-- ✅ Meaningful: **T**ree **N**avigator
-- ✅ Fast to type
-- ✅ Consistent across all shells
+* ✅ Short and memorable
+* ✅ Doesn’t conflict with existing commands
+* ✅ Meaningful: **T**ree **N**avigator
+* ✅ Fast to type
+* ✅ Consistent across all shells
 
-### Automatic Alias Installation
-```bash
+==== Automatic Alias Installation
+
+[source,bash]
+----
 # This adds the alias to your shell config automatically
 tree-navigator --install-alias
-```
+----
 
-This will detect your shell and add `alias tn='tree-navigator'` to the appropriate config file.
+This will detect your shell and add `+alias tn='tree-navigator'+` to the
+appropriate config file.
 
-### Manual Alias Setup
+==== Manual Alias Setup
 
-#### Bash
-```bash
+===== Bash
+
+[source,bash]
+----
 echo "alias tn='tree-navigator'" >> ~/.bashrc
 source ~/.bashrc
-```
+----
 
-#### Zsh
-```bash
+===== Zsh
+
+[source,bash]
+----
 echo "alias tn='tree-navigator'" >> ~/.zshrc
 source ~/.zshrc
-```
+----
 
-#### Fish
-```bash
+===== Fish
+
+[source,bash]
+----
 echo "alias tn='tree-navigator'" >> ~/.config/fish/config.fish
 source ~/.config/fish/config.fish
-```
+----
 
-#### Nushell
-```bash
+===== Nushell
+
+[source,bash]
+----
 echo "alias tn = tree-navigator" >> ~/.config/nushell/config.nu
-```
+----
 
-#### Tcsh
-```bash
+===== Tcsh
+
+[source,bash]
+----
 echo "alias tn tree-navigator" >> ~/.tcshrc
 source ~/.tcshrc
-```
+----
 
-#### Dash (add to profile)
-```bash
+===== Dash (add to profile)
+
+[source,bash]
+----
 echo "alias tn='tree-navigator'" >> ~/.profile
 . ~/.profile
-```
+----
 
-### Verify Installation
-```bash
+==== Verify Installation
+
+[source,bash]
+----
 # Full command
 tree-navigator --version
 
@@ -146,10 +174,12 @@ tn --version
 
 # Both should output:
 # tree-navigator 2.0.0 (Ada 2022)
-```
+----
 
-## Usage Examples
-```bash
+=== Usage Examples
+
+[source,bash]
+----
 # Export directory tree
 tn --export output.txt --max-depth 5
 
@@ -167,12 +197,14 @@ tn --help
 
 # View man page
 man tree-navigator
-```
+----
 
-## System-Wide Installation (From Source)
+=== System-Wide Installation (From Source)
 
 For manual system-wide installation:
-```bash
+
+[source,bash]
+----
 # After building
 sudo install -m 755 bin/main /usr/local/bin/tn
 sudo install -m 644 man/tree-navigator.1 /usr/local/share/man/man1/
@@ -181,12 +213,14 @@ sudo mandb
 
 # Create symlink for full name
 sudo ln -s /usr/local/bin/tn /usr/local/bin/tree-navigator
-```
+----
 
-Now both `tn` and `tree-navigator` will work!
+Now both `+tn+` and `+tree-navigator+` will work!
 
-## User-Only Installation (No Root)
-```bash
+=== User-Only Installation (No Root)
+
+[source,bash]
+----
 # Build
 gprbuild -P tree_navigator.gpr -XBuild_Mode=release
 
@@ -206,12 +240,14 @@ gzip -f ~/.local/share/man/man1/tree-navigator.1
 # Update MANPATH
 echo 'export MANPATH="$HOME/.local/share/man:$MANPATH"' >> ~/.bashrc
 source ~/.bashrc
-```
+----
 
-## Uninstallation
+=== Uninstallation
 
-### Package Manager
-```bash
+==== Package Manager
+
+[source,bash]
+----
 # Debian/Ubuntu
 sudo apt remove tree-navigator
 
@@ -226,10 +262,12 @@ flatpak uninstall com.gitlab.hyperpolymath.TreeNavigator
 
 # Snap
 sudo snap remove tree-navigator
-```
+----
 
-### Manual
-```bash
+==== Manual
+
+[source,bash]
+----
 sudo rm -f /usr/local/bin/tn
 sudo rm -f /usr/local/bin/tree-navigator
 sudo rm -f /usr/local/share/man/man1/tree-navigator.1.gz
@@ -238,12 +276,14 @@ sudo mandb
 # Remove alias from shell config
 # Edit ~/.bashrc, ~/.zshrc, etc. and remove the line:
 # alias tn='tree-navigator'
-```
+----
 
-## Troubleshooting
+=== Troubleshooting
 
-### Command not found
-```bash
+==== Command not found
+
+[source,bash]
+----
 # Check if installed
 which tn
 which tree-navigator
@@ -253,16 +293,20 @@ echo $PATH
 
 # Verify binary location
 ls -l /usr/local/bin/tn
-```
+----
 
-### Permission denied
-```bash
+==== Permission denied
+
+[source,bash]
+----
 # Make executable
 chmod +x /usr/local/bin/tn
-```
+----
 
-### Man page not found
-```bash
+==== Man page not found
+
+[source,bash]
+----
 # Update man database
 sudo mandb
 
@@ -271,22 +315,26 @@ echo $MANPATH
 
 # Verify man page exists
 ls -l /usr/local/share/man/man1/tree-navigator.1.gz
-```
+----
 
-## Dependencies
+=== Dependencies
 
-### Runtime (for binary packages)
-- libgnat-13 or libgnat-15
+==== Runtime (for binary packages)
 
-### Build (for source installation)
-- GNAT Ada Compiler (GCC 13+)
-- GPRbuild
-- Make (optional)
+* libgnat-13 or libgnat-15
 
-## Updating
+==== Build (for source installation)
 
-### Package Manager
-```bash
+* GNAT Ada Compiler (GCC 13+)
+* GPRbuild
+* Make (optional)
+
+=== Updating
+
+==== Package Manager
+
+[source,bash]
+----
 # Debian/Ubuntu
 sudo apt update && sudo apt upgrade tree-navigator
 
@@ -295,20 +343,24 @@ sudo dnf upgrade tree-navigator
 
 # Arch
 yay -Syu tree-navigator
-```
+----
 
-### From Source
-```bash
+==== From Source
+
+[source,bash]
+----
 cd tree-navigator
 git pull origin main
 gprbuild -P tree_navigator.gpr -XBuild_Mode=release
 sudo cp bin/main /usr/local/bin/tn
-```
+----
 
-## Platform-Specific Notes
+=== Platform-Specific Notes
 
-### Fedora Silverblue / CoreOS
-```bash
+==== Fedora Silverblue / CoreOS
+
+[source,bash]
+----
 # Use Flatpak or toolbox
 flatpak install com.gitlab.hyperpolymath.TreeNavigator
 
@@ -316,38 +368,42 @@ flatpak install com.gitlab.hyperpolymath.TreeNavigator
 toolbox create
 toolbox enter
 sudo dnf install tree-navigator
-```
+----
 
-### NixOS
-```nix
+==== NixOS
+
+[source,nix]
+----
 # In configuration.nix
 environment.systemPackages = with pkgs; [
   tree-navigator
 ];
-```
+----
 
-### Windows (WSL)
-```bash
+==== Windows (WSL)
+
+[source,bash]
+----
 # Use Ubuntu/Debian instructions in WSL
 sudo apt install tree-navigator
-```
+----
 
-## Getting Help
+=== Getting Help
 
-- **Documentation:** https://gitlab.com/hyperpolymath/tree-navigator/-/wikis/home
-- **Issues:** https://gitlab.com/hyperpolymath/tree-navigator/-/issues
-- **Man Page:** `man tree-navigator`
-- **Built-in Help:** `tn --help`
+* *Documentation:*
+https://gitlab.com/hyperpolymath/tree-navigator/-/wikis/home
+* *Issues:* https://gitlab.com/hyperpolymath/tree-navigator/-/issues
+* *Man Page:* `+man tree-navigator+`
+* *Built-in Help:* `+tn --help+`
 
-## Next Steps
+=== Next Steps
 
-After installation:
-1. Read the [User Guide](https://gitlab.com/hyperpolymath/tree-navigator/-/wikis/User-Guide)
-2. Try the examples: `tn --help`
-3. Set up shell completion (if available)
-4. Explore interactive mode: `tn`
+After installation: 1. Read the
+https://gitlab.com/hyperpolymath/tree-navigator/-/wikis/User-Guide[User
+Guide] 2. Try the examples: `+tn --help+` 3. Set up shell completion (if
+available) 4. Explore interactive mode: `+tn+`
 
----
+'''''
 
-**Installed successfully?** Share your experience or report issues at:
+*Installed successfully?* Share your experience or report issues at:
 https://gitlab.com/hyperpolymath/tree-navigator/-/issues
