@@ -39,10 +39,7 @@ description = "Install pinned JS dev tools (Prettier) from bun.lock"
 run = "bun install --frozen-lockfile"
 
 [tasks.build]
-run = "just build"
-
-[tasks.test]
-run = "just test"
+run = "gprbuild -P tree_navigator.gpr -XBuild_Mode=release"
 
 [tasks.lint]
 depends = ["setup"]
